@@ -1,10 +1,10 @@
 - name: Install apache
   apt: 
-    - name: apache2
-      state: present
-      update_cache: yes
+    name: apache2
+    state: present
+    update_cache: yes
 - name: Ensure apache is started
-    service: 
-      - name: apache2
-        state: started
-        enabled: yes
+  service: 
+    name: apache2
+    state: started
+    enabled: yes
