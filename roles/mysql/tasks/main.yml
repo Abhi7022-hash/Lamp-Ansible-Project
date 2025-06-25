@@ -17,7 +17,7 @@
     update_cache: yes
 - name: Ensure MySQL is running
   service:
-    name: MySQL
+    name: mysql
     state: started
     enabled: yes
 - name: Create MySQL database
