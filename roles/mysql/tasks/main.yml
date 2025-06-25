@@ -1,16 +1,18 @@
+- name: Install debconf-utils
+  apt:
+    name: debconf-utils
+    state: present
+
+- name: Install PyMySQL
+  apt:
+    name: python3-pymysql
+    state: present
+
 - name: Preseed MySQL root password
-  debconf:
-    name: 'mysql-server'
-    question: 'mysql-server/root_password'
-    value: "{{ mysql_root_password }}"
-    vtype: 'password'
+  shell: echo "mysql-server mysql-server/root_password password {{ mysql_root_password }}" | debconf-set-selections
 
 - name: Confirm MySQL root password again
-  debconf:
-    name: 'mysql-server'
-    question: 'mysql-server/root_password_again'
-    value: "{{ mysql_root_password }}"
-    vtype: 'password'
+  shell: echo "mysql-server mysql-server/root_password_again password {{ mysql_root_password }}" | debconf-set-selections
 
 - name: Install MySQL
   apt:
@@ -18,15 +20,4 @@
     state: present
     update_cache: yes
 
-- name: Ensure MySQL is running
-  service:
-    name: mysql
-    state: started
-    enabled: yes
 
-- name: Create MySQL database
-  mysql_db:
-    name: "{{ mysql_database }}"
-    state: present
-    login_user: root
-    login_password: "{{ mysql_root_password }}"
