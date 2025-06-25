@@ -1,0 +1,10 @@
+---
+- name: Lamp Stack Provisioning
+  hosts: web
+  become: true
+  var_files:
+  - ../vars/main.yml
+  roles:
+  - apache
+  - mysql
+  - php
