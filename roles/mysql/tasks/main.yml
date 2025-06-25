@@ -25,4 +25,4 @@
     name: "{{mysql_database}}"
     state: present
     login_user: root
-    login-password: "{{mysql_root_password}}"
+    login_password: "{{mysql_root_password}}"
