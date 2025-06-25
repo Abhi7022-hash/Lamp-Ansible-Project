@@ -1,3 +1,4 @@
+---
 - name: install apache web server
   hosts: web
   become: true
